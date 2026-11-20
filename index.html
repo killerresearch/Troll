@@ -143,6 +143,11 @@
   h2{font-size:clamp(24px,6vw,34px);margin:0;font-weight:900;letter-spacing:.01em}
   .sec-sub{color:var(--mut);font-size:14.5px;margin:0 0 18px;max-width:620px}
 
+  /* coming soon panels */
+  .soon-panel{background:var(--panel);border:1px dashed #3a4556;border-radius:var(--radius);padding:40px 20px;text-align:center}
+  .soon-panel .soon-big{display:inline-block;font-size:13px;font-weight:800;letter-spacing:.14em;color:var(--amber);background:#2a2103;border:1px solid #57450a;padding:8px 16px;border-radius:99px}
+  .soon-panel p{color:var(--mut);font-size:14.5px;margin:14px auto 0;max-width:480px;line-height:1.6}
+
   /* meet the troll */
   .meet{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
   .meet img{width:100%;max-height:430px;object-fit:contain;display:block}
@@ -251,8 +256,8 @@
       <span></span><span></span><span></span>
     </button>
     <nav class="menu" id="menu" aria-label="Site menu">
-      <a href="#memelab">Meme Lab <span class="badge live">LIVE</span></a>
-      <a href="#gallery">Gallery <span class="badge live">LIVE</span></a>
+      <div class="msoon">Meme Lab <span class="badge">COMING SOON</span></div>
+      <div class="msoon">Gallery <span class="badge">COMING SOON</span></div>
       <div class="msoon">Portal <span class="badge">COMING SOON</span></div>
       <div class="msoon">City <span class="badge">COMING SOON</span></div>
       <div class="msoon">Shop <span class="badge">COMING SOON</span></div>
@@ -269,13 +274,13 @@
   <div class="island-wrap">
     <img id="islandImg" alt="Floating troll island with a portal, the great stone Trollface statue, a cave, a lighthouse, a pier, a shop and market stalls" />
     <button class="hot" style="left:30.5%;top:55%" data-act="soon" data-name="The Pier" aria-label="The Pier hotspot"><span class="tag">The Pier · Soon</span></button>
-    <button class="hot" style="left:47.5%;top:20%" data-act="gallery" aria-label="Statue hotspot — go to Gallery"><span class="tag">The Statue · Gallery</span></button>
+    <button class="hot" style="left:47.5%;top:20%" data-act="soon" data-name="The Statue" aria-label="The Statue hotspot"><span class="tag">The Statue · Soon</span></button>
     <button class="hot" style="left:59.5%;top:40%" data-act="soon" data-name="The Cave" aria-label="The Cave hotspot"><span class="tag">The Cave · Soon</span></button>
     <button class="hot" style="left:48.5%;top:63.5%" data-act="soon" data-name="The Shop" aria-label="The Shop hotspot"><span class="tag">The Shop · Soon</span></button>
     <button class="hot" style="left:66.5%;top:63.5%" data-act="soon" data-name="P2P Stalls" aria-label="P2P Stalls hotspot"><span class="tag">P2P Stalls · Soon</span></button>
     <button class="hot" style="left:79.5%;top:21%" data-act="soon" data-name="The Lighthouse" aria-label="The Lighthouse hotspot"><span class="tag">The Lighthouse · Soon</span></button>
   </div>
-  <p class="island-cap"><b>Welcome to the island.</b> Tap the glowing spots to explore — the statue takes you to the Gallery, the rest of the island is still being built.</p>
+  <p class="island-cap"><b>Welcome to the island.</b> Tap the glowing spots to explore — every corner of the island is still being built, Meme Lab and Gallery included.</p>
 
   <section id="meet">
     <div class="meet">
@@ -289,46 +294,6 @@
         </div>
       </div>
     </div>
-  </section>
-
-  <section id="memelab">
-    <div class="sec-head"><h2>Meme Lab</h2><span class="badge live">LIVE</span></div>
-    <p class="sec-sub">Pick a face, pick a backdrop, add your top and bottom text — the lab renders it live. Download it and go cause some comments.</p>
-    <div class="lab">
-      <div class="stage"><canvas id="meme" width="800" height="800"></canvas></div>
-      <div class="controls">
-        <div>
-          <div class="ctl-label">FACE</div>
-          <div class="faces" id="facePick"></div>
-        </div>
-        <div>
-          <div class="ctl-label">BACKDROP</div>
-          <div class="swatches" id="bgPick"></div>
-        </div>
-        <div>
-          <div class="ctl-label">TOP TEXT</div>
-          <input type="text" id="topText" maxlength="42" placeholder="TROLLING SINCE" autocomplete="off" />
-        </div>
-        <div>
-          <div class="ctl-label">BOTTOM TEXT</div>
-          <input type="text" id="botText" maxlength="42" placeholder="FOREVER" autocomplete="off" />
-        </div>
-        <div class="btnrow">
-          <a class="btn" id="dlMeme" download="troll-meme.png" href="#">Download meme</a>
-          <button class="btn ghost" id="surprise" type="button">Surprise me</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="gallery">
-    <div class="sec-head"><h2>Gallery</h2><span class="badge live">LIVE</span></div>
-    <p class="sec-sub">Nine faces, nine full-body outfits. Every piece is free to download — take the troll anywhere.</p>
-    <div class="toggle" role="tablist" aria-label="Gallery view">
-      <button id="tabPfp" class="sel" type="button">PFPs</button>
-      <button id="tabBody" type="button">Full-Body</button>
-    </div>
-    <div class="grid" id="galGrid"></div>
   </section>
 
   <div class="socialbar" aria-label="Social links">
@@ -451,8 +416,8 @@ var IMG = {
     { name: "City",     img: "outGangster", soon: true },
     { name: "Shop",     img: "outKing",     soon: true },
     { name: "P2P",      img: "pfpSmirk",    soon: true },
-    { name: "Meme Lab", img: "pfpLaughing", href: "#memelab" },
-    { name: "Gallery",  img: "pfpCool",     href: "#gallery" },
+    { name: "Meme Lab", img: "pfpLaughing", soon: true },
+    { name: "Gallery",  img: "pfpCool",     soon: true },
     { name: "Cave",     img: "pfpSleepy",   soon: true },
     { name: "OpenSea",  img: "outPirate",   soon: true }
   ];
@@ -482,128 +447,10 @@ var IMG = {
   /* island hotspots */
   document.querySelectorAll(".hot").forEach(function(h){
     h.addEventListener("click", function(){
-      if (h.dataset.act === "gallery") {
-        document.getElementById("gallery").scrollIntoView({ behavior: "smooth" });
-      } else {
-        toast(h.dataset.name + " is coming soon — still under construction.");
-      }
+      toast(h.dataset.name + " is coming soon — still under construction.");
     });
   });
 
-  /* ---------- Meme Lab ---------- */
-  var FACES = [
-    ["pfpLaughing","Laughing"],["pfpSmirk","Smirk"],["pfpCool","Cool"],
-    ["pfpWinking","Winking"],["pfpAngry","Angry"],["pfpCrying","Crying"],
-    ["pfpSurprised","Surprised"],["pfpLove","Love"],["pfpSleepy","Sleepy"]
-  ];
-  var BGS = [
-    ["#ffffff","White"],["#ffe14d","Troll Yellow"],["#0b3d91","Canton Blue"],
-    ["#101418","Night"],["#7ee787","Slime Green"]
-  ];
-  var state = { face: 0, bg: 0 };
-  var faceImgs = FACES.map(function(f){ var im = new Image(); im.src = IMG[f[0]]; return im; });
-  var facePick = $("facePick"), bgPick = $("bgPick");
-  FACES.forEach(function(f, i){
-    var b = document.createElement("button");
-    b.type = "button"; b.setAttribute("aria-label", "Face: " + f[1]);
-    if (i === 0) b.className = "sel";
-    b.innerHTML = '<img alt="" />';
-    b.querySelector("img").src = IMG[f[0]];
-    b.addEventListener("click", function(){
-      state.face = i;
-      facePick.querySelectorAll("button").forEach(function(x, j){ x.classList.toggle("sel", j === i); });
-      drawMeme();
-    });
-    facePick.appendChild(b);
-  });
-  BGS.forEach(function(bg, i){
-    var b = document.createElement("button");
-    b.type = "button"; b.style.background = bg[0];
-    b.setAttribute("aria-label", "Backdrop: " + bg[1]);
-    if (i === 0) b.className = "sel";
-    b.addEventListener("click", function(){
-      state.bg = i;
-      bgPick.querySelectorAll("button").forEach(function(x, j){ x.classList.toggle("sel", j === i); });
-      drawMeme();
-    });
-    bgPick.appendChild(b);
-  });
-
-  var cv = $("meme"), ctx = cv.getContext("2d");
-  function drawCaption(text, y, isTop){
-    if (!text) return;
-    var size = 74;
-    ctx.font = "900 " + size + "px Impact, 'Arial Black', sans-serif";
-    while (ctx.measureText(text).width > cv.width - 60 && size > 26) {
-      size -= 4; ctx.font = "900 " + size + "px Impact, 'Arial Black', sans-serif";
-    }
-    ctx.textAlign = "center"; ctx.textBaseline = isTop ? "top" : "bottom";
-    ctx.lineWidth = Math.max(6, size / 8); ctx.strokeStyle = "#000"; ctx.fillStyle = "#fff";
-    ctx.lineJoin = "round";
-    ctx.strokeText(text, cv.width / 2, y);
-    ctx.fillText(text, cv.width / 2, y);
-  }
-  function drawMeme(){
-    ctx.fillStyle = BGS[state.bg][0];
-    ctx.fillRect(0, 0, cv.width, cv.height);
-    var im = faceImgs[state.face];
-    if (im.complete && im.naturalWidth) {
-      var side = 600, x = (cv.width - side) / 2, y = (cv.height - side) / 2;
-      ctx.drawImage(im, x, y, side, side);
-    }
-    drawCaption($("topText").value.trim().toUpperCase(), 26, true);
-    drawCaption($("botText").value.trim().toUpperCase(), cv.height - 26, false);
-    $("dlMeme").href = cv.toDataURL("image/png");
-  }
-  $("topText").addEventListener("input", drawMeme);
-  $("botText").addEventListener("input", drawMeme);
-  faceImgs.forEach(function(im){ im.addEventListener("load", drawMeme); });
-
-  var SURPRISES = [
-    ["TROLLING SINCE","FOREVER"],["PROBLEM?","STAY MAD"],["U MAD BRO?","HE MAD"],
-    ["NICE ARGUMENT","UNFORTUNATELY, TROLLFACE"],["HE CLICKED","THE OBVIOUS BAIT"],
-    ["CERTIFIED","BRUH MOMENT"],["THE INTERNET","RUNS ON TROLLS"],["CANTON ARC","GRIN UNLOCKED"]
-  ];
-  $("surprise").addEventListener("click", function(){
-    state.face = Math.floor(Math.random() * FACES.length);
-    state.bg = Math.floor(Math.random() * BGS.length);
-    var pair = SURPRISES[Math.floor(Math.random() * SURPRISES.length)];
-    $("topText").value = pair[0]; $("botText").value = pair[1];
-    facePick.querySelectorAll("button").forEach(function(x, j){ x.classList.toggle("sel", j === state.face); });
-    bgPick.querySelectorAll("button").forEach(function(x, j){ x.classList.toggle("sel", j === state.bg); });
-    drawMeme();
-  });
-  drawMeme();
-
-  /* ---------- Gallery ---------- */
-  var GAL = {
-    pfp: FACES.map(function(f){ return { img: f[0], name: f[1], file: "troll-pfp-" + f[1].toLowerCase() + ".webp" }; }),
-    body: [
-      ["outCyberpunk","Cyberpunk"],["outSamurai","Samurai"],["outAstronaut","Astronaut"],
-      ["outDj","DJ"],["outWizard","Wizard"],["outMecha","Mecha"],
-      ["outPirate","Pirate"],["outGangster","Gangster"],["outKing","King"]
-    ].map(function(o){ return { img: o[0], name: o[1], file: "troll-" + o[1].toLowerCase() + ".webp" }; })
-  };
-  var galGrid = $("galGrid");
-  function renderGal(kind){
-    galGrid.innerHTML = "";
-    GAL[kind].forEach(function(item){
-      var card = document.createElement("div");
-      card.className = "card";
-      card.innerHTML = '<img alt="" /><div class="name"></div><a class="dl" download>Download</a>';
-      var im = card.querySelector("img");
-      im.src = IMG[item.img];
-      im.alt = "Troll — " + item.name;
-      card.querySelector(".name").textContent = item.name;
-      var a = card.querySelector("a.dl");
-      a.href = IMG[item.img]; a.setAttribute("download", item.file);
-      galGrid.appendChild(card);
-    });
-  }
-  var tabPfp = $("tabPfp"), tabBody = $("tabBody");
-  tabPfp.addEventListener("click", function(){ tabPfp.classList.add("sel"); tabBody.classList.remove("sel"); renderGal("pfp"); });
-  tabBody.addEventListener("click", function(){ tabBody.classList.add("sel"); tabPfp.classList.remove("sel"); renderGal("body"); });
-  renderGal("pfp");
 })();
 </script>
 </body>
